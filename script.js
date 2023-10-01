@@ -4,6 +4,7 @@ let a=``,
     A=0,
     B=0,
     ans=0;
+    flag=false;
     outString=``;
 let inputView=document.getElementById("inputView");
 let outputView=document.getElementById('outputView');
@@ -29,6 +30,7 @@ function opEnter(e){
         a=a+o+b;
         o=``;
         b=``;
+        flag=true;
     }
     switch(e.target.id){
         case "add":o=`+` ;
@@ -53,29 +55,31 @@ function opEnter(e){
 }
 
 function eval(){
-    if(a!=``&&o!=``&&b!=``){
-        a=`${ans}`;
-    }
+    
     switch (o){
         case `+`:A=parseFloat(a);
+                 if(flag){A=ans};
                  B=parseFloat(b);
                  ans=A+B;
                  numView();
                  break
 
         case `-`:A=parseFloat(a);
+                 if(flag){A=ans};
                  B=parseFloat(b);
                  ans=A-B;
                  numView();
                  break
 
         case `*`:A=parseFloat(a);
+                 if(flag){A=ans};
                  B=parseFloat(b);
                  ans=A*B;
                  numView();
                  break
 
         case `/`:A=parseFloat(a);
+                 if(flag){A=ans};
                  B=parseFloat(b);
                  ans=A/B;
                  numView();
@@ -114,4 +118,5 @@ function clearAll(){
     A=0;
     B=0;
     ans=0;
+    flag=false;
 }
