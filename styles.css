@@ -1,6 +1,6 @@
 html {
     box-sizing: border-box;
-    background-color: #6499E9;
+    background-color: #000814
 
 }
 body {
@@ -12,9 +12,11 @@ body {
 #calcContainer {
     margin-top: 250px;
     border-style: solid;
-    border-color: #BEFFF7;
-    width: 214px;
-    height: 230px;
+    border-color: #003566;
+    border-width: 10px;
+    border-radius: 10px;
+    width: 393px;
+    height: 460px;
 }
 
 #calcButtons{
@@ -24,22 +26,19 @@ body {
     width: 250px;
 }
 
-#inputView {
-    width: 215px;
-    height: 35px;
-    background-color: #9EDDFF;
-    color: #6499E9;
+#inputView,#outputView {
+    width: 384px;
+    height: 70px;
+    background-color: #edc531;
+    color: #000814;
+    text-align: right;
+    font-size: 40px;
+    padding-right: 10px;
 }
 
-#outputView{
-    width: 215px;
-    height: 35px;
-    background-color: #9EDDFF;
-    color: #6499E9;
-}
 .numBox {
-    width: 130px;
-    height: 180px;
+    width: 244px;
+    height: 360px;
     gap: 0px;
     display: flex;
     flex-direction: column;
@@ -47,15 +46,17 @@ body {
 }
 
 .number {
-    height: 40px;
-    width: 40px;
+    height: 80px;
+    width: 80px;
     padding: 0px;
     margin: 0px;
+    background-color: #2a2e34;
+    color: white;
 }
 
 .numRow {
-    width: 150px;
-    height: 40px;
+    width: 300px;
+    height: 80px;
     display: flex;
     gap: 1px;
   
@@ -69,18 +70,35 @@ body {
 }
 
 .oper {
-    width: 40px;
-    height: 40px;
+    width: 80px;
+    height: 80px;
     padding: 0px;
     margin: 0px;
+    background-color: #2a2e34;
+    color: white;
 }
 .OProw {
     display: flex;
     gap: 1px;
+    width: 150px;
 }
-#clearAll,#equal {
-    padding: 0px;
-    height: 40px;
-    width: 84px;
+
+.equalAndClear {
+    display: flex;
+    flex-flow: column wrap;
+    align-content: flex-start;
+    height: 160px;
+    width: 168px;
+}
+
+.equal,.clearAll {
+    height: 80px;
+    width: 150px;
+    background-color: #2a2e34;
+    color: white;
+}
+
+.number,.oper,.equal,.clearAll {
+    font-size: 30px;
 }
 
