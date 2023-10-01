@@ -4,13 +4,94 @@ let a=``,
     A=0,
     B=0,
     ans=0;
+    oldAns=0;
     flag=false;
+    path=false;
     outString=``;
 let inputView=document.getElementById("inputView");
 let outputView=document.getElementById('outputView');
 //document.body.addEventListener('keydown',keyEntry);
 
-multiply=document.getElementById(multiply)
+window.addEventListener("keydown",keySort);
+function keySort(e){
+    switch(e.key){
+        case `0`:keyNumEnter(e.key);
+                 break
+        case `1`:keyNumEnter(e.key);
+                 break
+        case `2`:keyNumEnter(e.key);
+                 break
+        case `3`:keyNumEnter(e.key);
+                 break
+        case `4`:keyNumEnter(e.key);
+                 break
+        case `5`:keyNumEnter(e.key);
+                 break
+        case `6`:keyNumEnter(e.key);
+                 break
+        case `7`:keyNumEnter(e.key);
+                 break
+        case `8`:keyNumEnter(e.key);
+                 break
+        case `9`:keyNumEnter(e.key);
+                 break
+        case `+`:keyOpEnter(e.key);
+                 break
+        case `-`:keyOpEnter(e.key);
+                 break
+        case `*`:keyOpEnter(e.key);
+                 break
+        case `/`:keyOpEnter(e.key);
+                 break
+        case `Backspace`:numDel();
+                         break
+        case `Delete`:   numDel();
+                         break  
+        
+
+    }
+}
+
+function keyNumEnter(e){
+    if(a==``||(b==`` && o==``)){
+        a+=e;
+        inView();
+          }
+ else if(o!=``){
+        b+=e;
+        inView();
+        eval();
+          }
+}
+
+function keyOpEnter(e){
+    if(a!=``&&o!=``&&b!=``){
+        a=a+o+b;
+        o=``;
+        b=``;
+        flag=true;
+    }
+    switch(e){
+        case "+":o=`+` ;
+                   inView();
+                   break
+
+        case "-":o="-";
+                        inView();
+                        break
+
+        case "*":o="x";
+                        inView();
+                        break
+        case "/":o="/";
+                      inView();
+                      break
+    }
+
+    if(b!=``){
+        eval();
+    }
+}
 
 function numEnter(e){
          if(a==``||(b==`` && o==``)){
@@ -41,7 +122,7 @@ function opEnter(e){
                         inView();
                         break
 
-        case "multiply":o="*";
+        case "multiply":o="x";
                         inView();
                         break
         case "divide":o="/";
@@ -55,11 +136,12 @@ function opEnter(e){
 }
 
 function eval(){
-    
+   
     switch (o){
         case `+`:A=parseFloat(a);
                  if(flag){A=ans};
                  B=parseFloat(b);
+                 oldAns=ans; 
                  ans=A+B;
                  numView();
                  break
@@ -67,13 +149,15 @@ function eval(){
         case `-`:A=parseFloat(a);
                  if(flag){A=ans};
                  B=parseFloat(b);
+                 oldAns=ans;
                  ans=A-B;
                  numView();
                  break
 
-        case `*`:A=parseFloat(a);
+        case `x`:A=parseFloat(a);
                  if(flag){A=ans};
                  B=parseFloat(b);
+                 oldAns=ans;
                  ans=A*B;
                  numView();
                  break
@@ -81,25 +165,13 @@ function eval(){
         case `/`:A=parseFloat(a);
                  if(flag){A=ans};
                  B=parseFloat(b);
+                 oldAns=ans;
                  ans=A/B;
                  numView();
                  break
     }
 }
-/*function keyEntry(e){
-    if(a==``){
-        a+=e.target.value;
-    }
-    else if(o!=``){
-        b+=e.target.value;
-        eval();
-    }
-    else{
-        eval();
-    
-    }
-}
-*/
+
 function numView() {
     outputView.innerHTML=`${ans}`;
 }
@@ -107,6 +179,42 @@ function numView() {
 function inView(){
  let outString=a+o+b;   
  inputView.innerHTML=outString;   
+}
+
+function numDel(){
+                str=((b==``)?
+                    ((o==``)?a
+                    :o):b)
+                stringDelete(str);
+}
+
+function stringDelete(str){
+    switch(str){
+        case a:path=true;
+               break;
+        case b:path=false;
+               break;
+        case o:o=``;
+               inView();
+               break
+    }
+
+    if(path){
+        a=a.slice(0,(a.length-1));
+        a==`` ? clearAll() : inView();
+    }
+    else{
+        b=b.slice(0,(b.length-1));
+        b==`` ? inView() : getOldVal();
+        
+    }
+    
+}
+
+function getOldVal(){
+    ans=oldAns;
+    inView();
+    numView();
 }
 
 function clearAll(){
