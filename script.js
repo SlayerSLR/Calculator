@@ -21,11 +21,15 @@ function numEnter(e){
                 inView();
                 eval();
                   }
-         else{
-                eval();
-                  }        
+        
+              
     }
 function opEnter(e){
+    if(a!=``&&o!=``&&b!=``){
+        a=a+o+b;
+        o=``;
+        b=``;
+    }
     switch(e.target.id){
         case "add":o=`+` ;
                    inView();
@@ -49,6 +53,9 @@ function opEnter(e){
 }
 
 function eval(){
+    if(a!=``&&o!=``&&b!=``){
+        a=`${ans}`;
+    }
     switch (o){
         case `+`:A=parseFloat(a);
                  B=parseFloat(b);
