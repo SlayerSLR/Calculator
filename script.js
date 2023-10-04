@@ -3,10 +3,12 @@ let a=``,
     o=``,
     A=0,
     B=0,
-    ans=0;
-    oldAns=0;
-    flag=false;
-    path=false;
+    ans=0,
+    history=[],
+    counter=0;
+    oldAns=0,
+    flag=false,
+    path=false,
     outString=``;
 let inputView=document.getElementById("inputView");
 let outputView=document.getElementById('outputView');
@@ -143,6 +145,8 @@ function eval(){
                  B=parseFloat(b);
                  oldAns=ans; 
                  ans=A+B;
+                 //history[counter]=ans;
+                 //++counter;
                  numView();
                  break
 
@@ -205,16 +209,16 @@ function stringDelete(str){
     }
     else{
         b=b.slice(0,(b.length-1));
-        b==`` ? inView() : getOldVal();
+        clearOutput();
         
     }
     
 }
 
-function getOldVal(){
-    ans=oldAns;
+function clearOutput(){
+
     inView();
-    numView();
+    outputView.innerHTML=``;
 }
 
 function clearAll(){
@@ -226,5 +230,6 @@ function clearAll(){
     A=0;
     B=0;
     ans=0;
+    history[0]=0;
     flag=false;
 }
